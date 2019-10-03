@@ -8,17 +8,17 @@
 #include <vector>
 #include <iomanip>
 #include <vector>
+#include <chrono>
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
-using std::vector;
-using std::stringstream;
 
 char change_letter(char a);
 string hash(string text);
 bool exist(const string& fileName);
-void InputFromFile(const string& fileName, string& text);
-int ReadLineByLine(const string& fileName);
+string InputFromFile(const string& fileName);
+std::chrono::duration<double> HashingEfficiency(const string& fileName);
+int CollisionsTest(const string& fileName);
 #endif

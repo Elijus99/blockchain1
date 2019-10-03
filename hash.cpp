@@ -35,37 +35,42 @@ bool exist(const string& fileName)
     std::ifstream infile(fileName);
     return infile.good();
 }
-void InputFromFile(const string& fileName, string& text)
+string InputFromFile(const string& fileName)
 {
-    if (exist(fileName)) {
-        std::ifstream in(fileName);
-        std::stringstream buffer;
-        buffer << in.rdbuf();
-        text = buffer.str();
-    }
-    else {
-        cout << "---Failas '" << fileName << "' nebuvo rastas---" << endl;
-    }
+    std::ifstream in(fileName);
+    std::stringstream buffer;
+    buffer << in.rdbuf();
+    return buffer.str();
 }
-/*int ReadLineByLine(const string& fileName)
+std::chrono::duration<double> HashingEfficiency(const string& fileName)
 {
-    if (exist(fileName)) {
         string line;
-        int collisions = 0;
         std::vector<string> hashes;
         std::ifstream in(fileName);
+        std::chrono::duration<double> totalTime = {};
         while (!in.eof()) {
             std::getline(in, line);
-            //hashes.push_back(int_to_hex(hash(line)));
+            auto start = std::chrono::high_resolution_clock::now();
+            string temp = hash(line);
+            auto end = std::chrono::high_resolution_clock::now();
+            totalTime += (end - start);
         }
-        for (int i = 1; i < hashes.size(); i++) {
-            if (hashes[i - 1] == hashes[i]) {
-                collisions++;
-            }
+        return totalTime;
+}
+int CollisionsTest(const string& fileName)
+{
+    string line;
+    int collisions = 0;
+    std::vector<string> hashes;
+    std::ifstream in(fileName);
+    while (!in.eof()) {
+        std::getline(in, line);
+        hashes.push_back(hash(line));
+    }
+    for (int i = 1; i < hashes.size(); i++) {
+        if (hashes[i - 1] == hashes[i]) {
+            collisions++;
         }
-        return collisions;
     }
-    else {
-        cout << "---Failas '" << fileName << "' nebuvo rastas---" << endl;
-    }
-}*/
+    return collisions;
+}
