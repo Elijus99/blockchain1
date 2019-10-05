@@ -16,13 +16,14 @@ char change_letter(char a)
 
 string hash(string text)
 {
-    string defaultHash = "2a24399145f1a59ed7ea00b590fd480a";
+    string defaultHash = "cgeVo3oGOdNKRZ4u8RgMhegdsgrU2rLq";
     for (unsigned int i = 0; i < text.length(); i++) {
         for (unsigned int j = 0; j < defaultHash.length(); j++) {
             int magic1 = 17 * text[i] * text[i];
+            int magic2 = (j+2) * text[i] * j;
             int magicIndex = (i * j + text[i]) % defaultHash.length();
             int magicIndex2 = i * text[i] % defaultHash.length();
-            defaultHash[j] = (defaultHash[j] + magic1 + i * j + j + ((defaultHash[magicIndex] * text[i] + text[0]) ^ (defaultHash[magicIndex2]))) % 128;
+            defaultHash[j] = (defaultHash[j] + magic1 + i * j + magic2 + ((defaultHash[magicIndex] * text[i] + text[0]) ^ (defaultHash[magicIndex2]))) % 128;
         }
     }
     for (unsigned int i = 0; i < defaultHash.length(); i++) {
@@ -45,7 +46,7 @@ string InputFromFile(const string& fileName)
 std::chrono::duration<double> HashingEfficiency(const string& fileName)
 {
         string line;
-        std::vector<string> hashes;
+        vector<string> hashes;
         std::ifstream in(fileName);
         std::chrono::duration<double> totalTime = {};
         while (!in.eof()) {
@@ -57,20 +58,56 @@ std::chrono::duration<double> HashingEfficiency(const string& fileName)
         }
         return totalTime;
 }
-int CollisionsTest(const string& fileName)
+int CollisionsTest(vector<pair> strings)
 {
-    string line;
     int collisions = 0;
-    std::vector<string> hashes;
-    std::ifstream in(fileName);
-    while (!in.eof()) {
-        std::getline(in, line);
-        hashes.push_back(hash(line));
+    vector<pair> hashes;
+    for (unsigned int i = 0; i < strings.size(); i++) {
+        pair temp;
+        temp.first = hash(strings[i].first);
+        temp.second = hash(strings[i].second);
+        hashes.push_back(temp);
     }
-    for (int i = 1; i < hashes.size(); i++) {
-        if (hashes[i - 1] == hashes[i]) {
+    for (unsigned int i = 0; i < hashes.size(); i++) {
+        if (hashes[i].first == hashes[i].second) {
             collisions++;
         }
     }
     return collisions;
+}
+string CharToBinary(char c)
+{
+    string binary;
+    for (int i = 7; i >= 0; --i)
+        binary += ((c & (1 << i)) ? '1' : '0');
+    return binary;
+}
+bitTest BitwiseTest(vector<pair> strings)
+{
+    vector<pair> hashes;
+    vector<double> mismatches;
+    for (unsigned int i = 0; i < strings.size(); i++) {
+        pair temp;
+        temp.first = hash(strings[i].first);
+        temp.second = hash(strings[i].second);
+        hashes.push_back(temp);
+    }
+    for (size_t i = 0; i < hashes.size(); i++) {
+        int mismatch = 0;
+        for (int j = 0; j < hashes[i].first.length(); j++) {
+            string binary1 = CharToBinary(hashes[i].first[j]);
+            string binary2 = CharToBinary(hashes[i].second[j]);
+            for (int k = 0; k < binary1.length(); k++) {
+                if (binary1[k] != binary2[k]) {
+                    mismatch++;
+                }
+            }
+        }
+        mismatches.push_back((double)mismatch/(hashes[i].first.length()*8.0));
+    }
+    bitTest difference;
+    difference.min = *std::min_element(mismatches.begin(), mismatches.end());
+    difference.max = *std::max_element(mismatches.begin(), mismatches.end());
+    difference.avg = (std::accumulate(mismatches.begin(), mismatches.end(), 0.0))/mismatches.size();
+    return difference;
 }
