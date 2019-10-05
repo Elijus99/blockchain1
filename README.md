@@ -1,6 +1,7 @@
 # Hash generator
 
-Program takes any input and turns it into unique 128bit pseudo-random hash.
+Program takes any input and turns it into 128bit pseudo-random hash. Hash length can be changed anytime by altering `defaultHash` variable length in `hash.cpp` file.  
+Hash value is created by performing various actions on default Hash. When this proccess finishes, the hash ends up being composed of various symbols. Only symbols with ASCII values of 0 to 127 are included. Then those symbols are changed to 0-9 and a-f.
 
 # How to install (UNIX terminal)
 - `git clone https://github.com/Elijus99/blockchain1.git`
