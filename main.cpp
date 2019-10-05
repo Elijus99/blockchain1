@@ -23,7 +23,7 @@ int main() {
                 string filename;
                 cin >> filename;
                 if (exist(filename)) {
-                    cout << "Hash: " << hash(InputFromFile(filename));
+                    cout << "Hash: " << hash(InputFromFile(filename)) << endl;
                 }
                 else {
                     cout << "---File '" << filename << "' was not found---" << endl;
@@ -34,7 +34,7 @@ int main() {
                 string filename;
                 cin >> filename;
                 if (exist(filename)) {
-                    cout << "Summed up hashing time: " << (HashingEfficiency(filename)).count() << endl;
+                    cout << "Summed up hashing time: " << (HashingEfficiency(filename)).count() << " s" << endl;
                 }
                 else {
                     cout << "---File '" << filename << "' was not found---" << endl;
@@ -59,9 +59,9 @@ int main() {
                 cout << "--------------------------" << endl;
                 vector<pair> strings = GenerateSimilarStringPairs(count, length);
                 bitTest difference = BitwiseTest(strings);
-                cout << "Minimal difference: " << std::setw(5) << std::fixed << difference.min*100 << endl;
-                cout << "Maximal difference: " << std::setw(5) << std::fixed << difference.max*100 << endl;
-                cout << "Average difference: " << std::setw(5) << std::fixed << difference.avg*100 << endl;
+                cout << "Minimal difference: " << std::setw(5) << std::fixed << difference.min*100 << "%" << endl;
+                cout << "Maximal difference: " << std::setw(5) << std::fixed << difference.max*100 << "%" << endl;
+                cout << "Average difference: " << std::setw(5) << std::fixed << difference.avg*100 << "%" << endl;
             }
             correct = 1;
         }

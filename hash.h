@@ -18,7 +18,7 @@ using std::endl;
 using std::string;
 using std::vector;
 
-char change_letter(char a);
+char change_symbol(char a);
 string hash(string text);
 bool exist(const string& fileName);
 string InputFromFile(const string& fileName);

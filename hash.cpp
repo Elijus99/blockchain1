@@ -2,10 +2,10 @@
 
 const char character_table[16]{ '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f' };
 
-char change_letter(char a)
+char change_symbol(char a)
 {
     int b;
-    if (!(a >= 48 && a <= 57 || a >= 97 && a <= 102))
+    if (!((a >= 48 && a <= 57) || (a >= 97 && a <= 102)))
     {
         b = (int)a;
         b = b % 16;
@@ -27,7 +27,7 @@ string hash(string text)
         }
     }
     for (unsigned int i = 0; i < defaultHash.length(); i++) {
-        defaultHash[i] = change_letter(defaultHash[i]);
+        defaultHash[i] = change_symbol(defaultHash[i]);
     }
     return defaultHash;
 }
