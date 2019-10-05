@@ -29,7 +29,7 @@ Program takes any input and turns it into unique 128bit pseudo-random hash.
 ### 2) Two files with 200 000 random symbols.
 ![DifferentSymbols](/images/differentSymbolsDifference.jpg)
 
-### 3) Two files with 2000 symbols of which only one is different.
+### 3) Two similar files with 2000 symbols each. Files only differs by one symbol.
 ![AlmostSame](/images/almostSameDifference.jpg)
 
 ### 4) Empty file.
