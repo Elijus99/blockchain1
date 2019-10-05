@@ -42,5 +42,5 @@ Program takes any input and turns it into unique 128bit pseudo-random hash.
 ![Collisions](/images/collisions.jpg)
 
 ### 7) 100 000 string pairs bits difference. Each pair has 5 symbols of which only one is different.
-![Bitwise](/images/bitwise.jpg)
+![Bitwise](/images/bitwise.jpg)  
 As it can be seen in image above, minimal pair difference is 0, which means that similar text hashes sometimes gets the same hash value.
