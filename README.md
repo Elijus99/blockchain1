@@ -24,13 +24,13 @@ Hash value is created by performing various actions on default Hash. When this p
 ![Bitwise](/images/bit.jpg)
 
 # Experimental tests
-### 1) Two files with single, different symbol.
+### 1) Two files with single different symbol.
 ![OneSymbol](/images/oneSymbolDifference.jpg)
 
 ### 2) Two files with 200 000 random symbols.
 ![DifferentSymbols](/images/differentSymbolsDifference.jpg)
 
-### 3) Two similar files with 2000 symbols each. Files only differs by one symbol.
+### 3) Two similar files with 2000 symbols each. Files only differ by one symbol.
 ![AlmostSame](/images/almostSameDifference.jpg)
 
 ### 4) Empty file.
@@ -44,4 +44,4 @@ Hash value is created by performing various actions on default Hash. When this p
 
 ### 7) 100 000 string pairs bits difference. Each pair has 5 symbols of which only one is different.
 ![Bitwise](/images/bitwise.jpg)  
-As it can be seen in image above, minimal pair difference is 0, which means that similar text hashes sometimes gets the same hash value.
+As it can be seen in image above, the minimal pair difference is 0 which means that similar text hashes sometimes get the same hash value.
