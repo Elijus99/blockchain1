@@ -23,7 +23,24 @@ Program takes any input and turns it into unique 128bit pseudo-random hash.
 ![Bitwise](/images/bit.jpg)
 
 # Experimental tests
-### 1) Two files with single, different symbol
+### 1) Two files with single, different symbol.
 ![OneSymbol](/images/oneSymbolDifference.jpg)
 
-### 2) 
+### 2) Two files with 200 000 random symbols.
+![DifferentSymbols](/images/differentSymbolsDifference.jpg)
+
+### 3) Two files with 2000 symbols of which only one is different.
+![AlmostSame](/images/almostSameDifference.jpg)
+
+### 4) Empty file.
+![Empty](/images/empty.jpg)
+
+### 5) File konstitucija.txt hashing efficiency.
+![Efficiency](/images/konstitucijaEfficiency.jpg)
+
+### 6) 1 000 000 random 5 characters length string pairs collisions.
+![Collisions](/images/collisions.jpg)
+
+### 7) 100 000 string pairs bits difference. Each pair has 5 symbols of which only one is different.
+![Bitwise](/images/bitwise.jpg)
+As it can be seen in image above, minimal pair difference is 0, which means that similar text hashes sometimes gets the same hash value.
